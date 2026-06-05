@@ -1,11 +1,11 @@
 #abstract
 """
-En esta aplicación utilizamos el dataset de viviendas de California.
+Este proyecto aplica machine learning supervisado (regresión)
+sobre el dataset de viviendas de California.
 
-Se entrena un modelo de machine learning supervisado de regresión
-para estimar el valor medio de viviendas en distintas zonas,
-a partir de sus características (ingresos, número de habitaciones,
-edad de las casas, población, etc.).
+Se utiliza un pipeline con escalado de variables y un modelo KNN,
+optimizando hiperparámetros mediante validación cruzada (GridSearchCV),
+para predecir el valor medio de viviendas en función de variables socioeconómicas y geográficas.
 """
 
 #imports
@@ -30,9 +30,7 @@ pipe = Pipeline([
     ("Model", KNeighborsRegressor())
     ])
 
-
-#pipe.get_params()
-
+#modelo
 mod = GridSearchCV(estimator=pipe,
              param_grid={'Model__n_neighbors': [1,2,3,4,5,6,7,8,9,10]},
              cv=3)
