@@ -1,3 +1,13 @@
+#abstract
+"""
+En esta aplicación utilizamos el dataset de viviendas de California.
+
+Se entrena un modelo de machine learning supervisado de regresión
+para estimar el valor medio de viviendas en distintas zonas,
+a partir de sus características (ingresos, número de habitaciones,
+edad de las casas, población, etc.).
+"""
+
 #imports
 import numpy as np
 import matplotlib.pyplot as plt
