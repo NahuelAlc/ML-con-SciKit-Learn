@@ -63,7 +63,39 @@ def plot_output(scaler):
 
 #Los 2 modelos. Uno con StandardScaler y otro con QuantileTransformer
 
-plot_output(scaler=StandardScaler())
+#plot_output(scaler=StandardScaler())
+#plt.show()
 #plot_output(scaler=QuantileTransformer(n_quantiles=100))
+#plt.show()
 
+df = pd.read_csv("drawndata2.csv")
+X = df[['x', 'y']].values
+y = df['z'] == 'a'
+plt.scatter(X[:, 0], X[:, 1], c=y);
 plt.show()
+
+#Para predecir datos no lineales usaremos PolynomialFeatures, convertiremos un sistema lineal en uno polinómico
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import PolynomialFeatures
+
+pipe = Pipeline([
+    ("scale", PolynomialFeatures()),
+    ("model", LogisticRegression())
+])
+
+pred = pipe.fit(X, y).predict(X)
+plt.scatter(X[:,0], X[:,1], c=pred);
+plt.show()
+
+#Cómo transformar palabras a datos numericos con los que poder trabajar
+
+#dado un array de palabras
+arr = np.array(["low", "low", "high", "medium"]).reshape(-1, 1)
+
+
+from sklearn.preprocessing import OneHotEncoder
+
+enc = OneHotEncoder(sparse=False, handle_unknown='ignore')
+enc.fit_transform(arr)
+
+enc.transform([["zero"]])
