@@ -95,7 +95,7 @@ arr = np.array(["low", "low", "high", "medium"]).reshape(-1, 1)
 
 from sklearn.preprocessing import OneHotEncoder
 
-enc = OneHotEncoder(sparse=False, handle_unknown='ignore')
+enc = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
 enc.fit_transform(arr)
 
 enc.transform([["zero"]])
